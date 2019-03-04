@@ -47,10 +47,43 @@ function createCard(cardData) {
   return card;
 };
 
-function renderRecipe(cardId) {
+function renderRecipe() {
   let id = location.hash.replace('#', '');
   let recipe = recipeData.find(r => r.id === id);
-  fullRecipeContainer.innerText = recipe.name;
+  fullRecipeContainer.innerHTML = '';
+  
+  let wrapper = document.createElement('div');
+  let card = document.createElement('div');
+  let cimage = document.createElement('div');
+  let title = document.createElement('h3');
+  let contents = document.createElement('div');
+  let actions = document.createElement('div');
+
+  wrapper.classList.add('full-recipe-wrapper');
+
+  title.innerText = recipe.name;
+
+  cimage.classList.add('card-image');
+  let img = document.createElement('img');
+  img.src = './images/' + getRandomInt(1, 29) + '.jpg';
+  cimage.appendChild(img);
+  
+  contents.classList.add('card-content');
+  let p = document.createElement('p');
+  p.innerText = recipe.instructions;
+  let h4 = document.createElement('h4');
+  h4.innerText = 'Instructions';
+  contents.appendChild(h4);
+  contents.appendChild(p);
+
+  card.classList.add('card');
+  card.appendChild(cimage);
+  card.appendChild(contents);
+
+  wrapper.appendChild(title);
+  wrapper.appendChild(card);
+
+  fullRecipeContainer.appendChild(wrapper);
 }
 
 // Exercise 1 - draw cards on screen using the
