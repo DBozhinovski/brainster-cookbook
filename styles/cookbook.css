@@ -96,11 +96,8 @@ header i.material-icons {
 
 #full-recipe-container {
   display: none;
+  padding: 2em 0;
 }
-
-/* #full-recipe-container {
-  width: 60vw;
-} */
 
 .full-recipe-wrapper {
   width: 50vw;

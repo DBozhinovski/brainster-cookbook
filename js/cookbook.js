@@ -44,6 +44,9 @@ function createCard(cardData) {
   card.appendChild(contents);
   card.appendChild(actions);
 
+  // Exercise 6 - make the tags clickable
+  // !!
+
   return card;
 };
 
@@ -57,7 +60,6 @@ function renderRecipe() {
   let cimage = document.createElement('div');
   let title = document.createElement('h3');
   let contents = document.createElement('div');
-  let actions = document.createElement('div');
 
   wrapper.classList.add('full-recipe-wrapper');
 
@@ -84,6 +86,21 @@ function renderRecipe() {
   wrapper.appendChild(card);
 
   fullRecipeContainer.appendChild(wrapper);
+  
+  // Exercise 4 here
+  // Exercise 4 - add a back "button"
+  backBtn = document.createElement('a');
+  backBtn.href = '#';
+  backBtn.classList.add('waves-effect', 'waves-light', 'btn', 'orange');
+  backBtn.text = "Back";
+  // !!
+
+  // Exercise 5 - add ingredients list
+  // Exercise 5 here
+  // !!
+
+  wrapper.appendChild(backBtn);
+
 }
 
 // Exercise 1 - draw cards on screen using the
@@ -112,6 +129,11 @@ function handleRoute(event) {
     searchContainer.style.display = 'none';
     renderRecipe();
   }
+  // Exercise 7 - Add routing for tags // need tags container
+
+  // Exercise 8 - Add a search form
+
+  // Exercise 9 - Make the recipes searchable by the form
 }
 
 window.addEventListener('hashchange', handleRoute);
