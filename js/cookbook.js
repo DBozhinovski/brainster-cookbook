@@ -1,6 +1,7 @@
 let cardContainer = document.querySelector('#card-container');
 let fullRecipeContainer = document.querySelector('#full-recipe-container');
 let searchContainer = document.querySelector('#search-container');
+let tagContainer = document.querySelector('#tag-container');
 
 function getRandomInt(min, max) {
   min = Math.ceil(min);
@@ -31,6 +32,24 @@ function createCard(cardData) {
     let tagLink = document.createElement('a');
     tagLink.innerText = '#' + tag;
     contents.appendChild(tagLink);
+    // Exercise 7 - make the tags clickable
+    tagLink.addEventListener('click', function(event) {
+      event.preventDefault(); // since it's a link
+      console.log(tag);
+      // Exercise 8 
+      let filteredRecipeData = recipeData.filter((r) => r.tags.includes(tag));
+      console.log(filteredRecipeData);
+      // !!
+      // Exercise 9
+      location.hash = `tag/${tag}`;
+      tagContainer.innerHTML = "";
+      filteredRecipeData.forEach((r) => {
+        let filteredCard = createCard(r);
+        tagContainer.appendChild(filteredCard);
+      })
+      // !!
+    })
+    // !!
   });
 
   actions.classList.add('card-action');
@@ -43,9 +62,6 @@ function createCard(cardData) {
   card.appendChild(cimage);
   card.appendChild(contents);
   card.appendChild(actions);
-
-  // Exercise 6 - make the tags clickable
-  // !!
 
   return card;
 };
@@ -71,11 +87,25 @@ function renderRecipe() {
   cimage.appendChild(img);
   
   contents.classList.add('card-content');
+  // Exercise 6 here - add ingredient list
+  let h4Ingredients = document.createElement('h4');
+  h4Ingredients.innerText = 'Ingredients';
+  let ulIngredients = document.createElement('ul');
+  recipe.ingredients.forEach((ing) => {
+    let li = document.createElement('li');
+    li.innerText = ing;
+    ulIngredients.appendChild(li);
+  });
+  // !!
   let p = document.createElement('p');
   p.innerText = recipe.instructions;
-  let h4 = document.createElement('h4');
-  h4.innerText = 'Instructions';
-  contents.appendChild(h4);
+  let h4Instructions = document.createElement('h4');
+  h4Instructions.innerText = 'Instructions';
+  // Exercise 6 - append the new elements here
+  contents.appendChild(h4Ingredients);
+  contents.appendChild(ulIngredients);
+  // !!
+  contents.appendChild(h4Instructions);
   contents.appendChild(p);
 
   card.classList.add('card');
@@ -87,19 +117,14 @@ function renderRecipe() {
 
   fullRecipeContainer.appendChild(wrapper);
   
-  // Exercise 4 here
-  // Exercise 4 - add a back "button"
+  // Exercise 5 here
+  // Exercise 5 - add a back "button"
   backBtn = document.createElement('a');
   backBtn.href = '#';
   backBtn.classList.add('waves-effect', 'waves-light', 'btn', 'orange');
   backBtn.text = "Back";
-  // !!
-
-  // Exercise 5 - add ingredients list
-  // Exercise 5 here
-  // !!
-
   wrapper.appendChild(backBtn);
+  // !!
 
 }
 
@@ -121,21 +146,33 @@ function handleRoute(event) {
   if (location.hash === "") {
     cardContainer.style.display = 'flex';
     fullRecipeContainer.style.display = 'none';
-    searchContainer.style.display = 'none';
+    tagContainer.style.display = 'none';
   } else {
-    // this is the individual recipe route
-    cardContainer.style.display = 'none';
-    fullRecipeContainer.style.display = 'flex';
-    searchContainer.style.display = 'none';
-    renderRecipe();
+      // Exercise 9
+      if (location.hash.includes('tag')) {
+        cardContainer.style.display = 'none';
+        fullRecipeContainer.style.display = 'none';
+        tagContainer.style.display = 'flex';
+      // !!
+      } else {
+        // this is the individual recipe route
+        // Exercise 3 - Render a recipe on screen
+        cardContainer.style.display = 'none';
+        fullRecipeContainer.style.display = 'flex';
+        tagContainer.style.display = 'none';
+        renderRecipe();
+      }
   }
-  // Exercise 7 - Add routing for tags // need tags container
+  // Exercise 8 - Add routing for tags // need tags container
 
-  // Exercise 8 - Add a search form
+  // Exercise 9 - Add a search form
 
-  // Exercise 9 - Make the recipes searchable by the form
+  // Exercise 10 - Make the recipes searchable by the form
 }
 
 window.addEventListener('hashchange', handleRoute);
-// Exercise 3 - make the same thing happen on the window load event
+// Exercise 4 - make the same thing happen on the window load event
 window.addEventListener('load', handleRoute);
+
+// Exercise 11 - make the logo clickable
+document.querySelector('header').addEventListener('click', () => location.hash = '#');
