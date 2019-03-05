@@ -1,0 +1,116 @@
+body {
+  margin: 0;
+  padding: 0;
+  background: #ececec;
+  width: 100vw;
+  overflow-x: hidden;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100vw;
+  overflow-x: hidden;
+}
+
+header {
+  display: flex;
+  width: 100vw;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 8px dashed rgba(0,0,0, .1);
+  border-top: 8px dashed rgba(0,0,0, .1);
+  padding: 1em 0;
+  cursor: pointer;
+}
+
+header h1 {
+  padding: 0;
+  margin: 0 0 10px 0;
+}
+
+h2.subtitle {
+  margin: 1.4em;
+  padding: 0;
+  font-size: 1.6em;
+  font-weight: 100;
+  text-decoration: underline;
+}
+
+header i.material-icons {
+  font-size: 10rem;
+  margin: 0 30px;
+}
+
+.navigation {
+  font-size: 1.4em;
+}
+
+#card-container, #tag-container {
+  width: 70vw;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+#card-container .card, #tag-container .card {
+  width: 30%;
+  padding: 1%;
+  /* min-height: 300px; */
+  display: flex;
+  flex-direction: column;
+}
+
+#card-container .card-image, #tag-container .card-image {
+  font-size: .8em;
+  /* flex-grow: 1; */
+}
+
+#card-container .card-image img, #tag-container .card-image img {
+  height: 250px;
+}
+
+#card-container .card-title, #tag-container .card-title {
+  background: rgba(0,0,0, .8);
+  width: 100%;
+}
+
+#card-container .card-content, #tag-container .card-content {
+  flex-grow: 1;
+}
+
+#card-container .card-content a, #tag-container .card-content a {
+  padding: .3em;
+  cursor: pointer;
+  display: inline-block;
+}
+
+#card-container .card-action, #tag-container .card-action {
+  display: flex;
+  justify-content: flex-end;
+}
+
+#full-recipe-container {
+  display: none;
+  padding: 2em 0;
+}
+
+.full-recipe-wrapper {
+  width: 50vw;
+}
+
+#full-recipe-container li {
+  padding: .5em;
+  list-style: square;
+  margin-left: 2em;
+}
+
+#tag-container {
+  display: none;
+}
+
+#search-container {
+}

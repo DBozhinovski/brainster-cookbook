@@ -35,20 +35,20 @@ function createCard(cardData) {
     // Exercise 7 - make the tags clickable
     tagLink.addEventListener('click', function(event) {
       event.preventDefault(); // since it's a link
-      console.log(tag);
+      // console.log(tag);
       // Exercise 8 
-      let filteredRecipeData = recipeData.filter((r) => r.tags.includes(tag));
-      console.log(filteredRecipeData);
+      // let filteredRecipeData = recipeData.filter((r) => r.tags.includes(tag));
+      // console.log(filteredRecipeData);
       // !!
       // Exercise 9
       location.hash = `tag/${tag}`;
-      tagContainer.innerHTML = "";
-      filteredRecipeData.forEach((r) => {
-        let filteredCard = createCard(r);
-        tagContainer.appendChild(filteredCard);
-      })
+      // tagContainer.innerHTML = "";
+      // filteredRecipeData.forEach((r) => {
+        // let filteredCard = createCard(r);
+        // tagContainer.appendChild(filteredCard);
+      // });
       // !!
-    })
+    });
     // !!
   });
 
@@ -153,6 +153,15 @@ function handleRoute(event) {
         cardContainer.style.display = 'none';
         fullRecipeContainer.style.display = 'none';
         tagContainer.style.display = 'flex';
+        // Exercise 12, 13, 14
+        let currentTag = location.hash.split('/')[1];
+        let filteredRecipeData = recipeData.filter((r) => r.tags.includes(currentTag));
+        tagContainer.innerHTML = "";
+        filteredRecipeData.forEach((r) => {
+          let filteredCard = createCard(r);
+          tagContainer.appendChild(filteredCard);
+        });
+        // !!
       // !!
       } else {
         // this is the individual recipe route
@@ -163,8 +172,6 @@ function handleRoute(event) {
         renderRecipe();
       }
   }
-  // Exercise 8 - Add routing for tags // need tags container
-
   // Exercise 9 - Add a search form
 
   // Exercise 10 - Make the recipes searchable by the form
