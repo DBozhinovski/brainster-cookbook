@@ -2,6 +2,7 @@ let cardContainer = document.querySelector('#card-container');
 let fullRecipeContainer = document.querySelector('#full-recipe-container');
 let searchContainer = document.querySelector('#search-container');
 let tagContainer = document.querySelector('#tag-container');
+let filtersContainer = document.querySelector('#filters');
 
 function getRandomInt(min, max) {
   min = Math.ceil(min);
@@ -128,6 +129,24 @@ function renderRecipe() {
 
 }
 
+function renderSearch() {
+  let input = document.createElement('input');
+  let btn = document.createElement('button');
+
+  btn.innerText = 'Search';
+  btn.classList.add('waves-effect', 'waves-light', 'btn', 'orange');
+
+  filtersContainer.appendChild(input);
+  filtersContainer.appendChild(btn);
+
+  btn.addEventListener('click', (e) => {
+    location.hash = `search/${input.value}`;
+    input.value = '';
+  });
+}
+
+renderSearch();
+
 // Exercise 1 - draw cards on screen using the
 // createCard function.
 recipeData.forEach(recipe => {
@@ -147,12 +166,14 @@ function handleRoute(event) {
     cardContainer.style.display = 'flex';
     fullRecipeContainer.style.display = 'none';
     tagContainer.style.display = 'none';
+    searchContainer.style.display = 'none';
   } else {
       // Exercise 9
       if (location.hash.includes('tag')) {
         cardContainer.style.display = 'none';
         fullRecipeContainer.style.display = 'none';
         tagContainer.style.display = 'flex';
+        searchContainer.style.display = 'none';
         // Exercise 12, 13, 14
         let currentTag = location.hash.split('/')[1];
         let filteredRecipeData = recipeData.filter((r) => r.tags.includes(currentTag));
@@ -163,12 +184,31 @@ function handleRoute(event) {
         });
         // !!
       // !!
+      } else if (location.hash.includes('search')) {
+        cardContainer.style.display = 'none';
+        fullRecipeContainer.style.display = 'none';
+        tagContainer.style.display = 'none';
+        searchContainer.style.display = 'flex';
+        searchContainer.innerHTML = "";
+        let currentSearchTerm = location.hash.split('/')[1];
+        let filteredRecipeData = recipeData.filter((r) => {
+          if (r.tags.includes(currentSearchTerm)) return true;
+          if (r.name.includes(currentSearchTerm)) return true;
+          if (r.instructions.includes(currentSearchTerm)) return true;
+          return false;
+        });
+
+        filteredRecipeData.forEach((r) => {
+          let filteredCard = createCard(r);
+          searchContainer.appendChild(filteredCard);
+        });
       } else {
         // this is the individual recipe route
         // Exercise 3 - Render a recipe on screen
         cardContainer.style.display = 'none';
         fullRecipeContainer.style.display = 'flex';
         tagContainer.style.display = 'none';
+        searchContainer.style.display = 'none';
         renderRecipe();
       }
   }

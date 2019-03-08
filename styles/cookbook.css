@@ -48,7 +48,7 @@ header i.material-icons {
   font-size: 1.4em;
 }
 
-#card-container, #tag-container {
+#card-container, #tag-container, #search-container {
   width: 70vw;
   display: flex;
   flex-direction: row;
@@ -56,7 +56,7 @@ header i.material-icons {
   justify-content: space-between;
 }
 
-#card-container .card, #tag-container .card {
+#card-container .card, #tag-container .card, #search-container .card {
   width: 30%;
   padding: 1%;
   /* min-height: 300px; */
@@ -64,31 +64,31 @@ header i.material-icons {
   flex-direction: column;
 }
 
-#card-container .card-image, #tag-container .card-image {
+#card-container .card-image, #tag-container .card-image, #search-container .card-image {
   font-size: .8em;
   /* flex-grow: 1; */
 }
 
-#card-container .card-image img, #tag-container .card-image img {
+#card-container .card-image img, #tag-container .card-image img, #search-container .card-image img {
   height: 250px;
 }
 
-#card-container .card-title, #tag-container .card-title {
+#card-container .card-title, #tag-container .card-title, #search-container .card-title {
   background: rgba(0,0,0, .8);
   width: 100%;
 }
 
-#card-container .card-content, #tag-container .card-content {
+#card-container .card-content, #tag-container .card-content, #search-container .card-content {
   flex-grow: 1;
 }
 
-#card-container .card-content a, #tag-container .card-content a {
+#card-container .card-content a, #tag-container .card-content a, #search-container .card-content a {
   padding: .3em;
   cursor: pointer;
   display: inline-block;
 }
 
-#card-container .card-action, #tag-container .card-action {
+#card-container .card-action, #tag-container .card-action, #search-container .card-action {
   display: flex;
   justify-content: flex-end;
 }
@@ -112,5 +112,10 @@ header i.material-icons {
   display: none;
 }
 
-#search-container {
+#filters {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 4em;
 }
